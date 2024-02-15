@@ -164,6 +164,9 @@
   id: BorgModuleMedical
 
 - type: Tag
+  id: BorgModuleSecurity
+
+- type: Tag
   id: BorgModuleService
 
 - type: Tag

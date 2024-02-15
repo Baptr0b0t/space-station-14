@@ -24,6 +24,7 @@
     <GuideEntityEmbed Entity="BorgChassisGeneric" Caption="Generic"/>
     <GuideEntityEmbed Entity="BorgChassisEngineer" Caption="Engineering"/>
     <GuideEntityEmbed Entity="BorgChassisMining" Caption="Mining"/>
+    <GuideEntityEmbed Entity="BorgChassisSecurity" Caption="Security"/>
     <GuideEntityEmbed Entity="BorgChassisJanitor" Caption="Janitor"/>
     <GuideEntityEmbed Entity="BorgChassisService" Caption="Service"/>
     <GuideEntityEmbed Entity="BorgChassisMedical" Caption="Medical"/>

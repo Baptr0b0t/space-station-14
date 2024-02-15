@@ -43,7 +43,7 @@
 
       - tool: Screwing
         doAfter: 0.5
-    
+
     - to: engineer
       steps:
       - assemblyId: engineer
@@ -184,6 +184,9 @@
 
   - node: engineer
     entity: BorgChassisEngineer
+
+  - node: security
+    entity: BorgChassisSecurity
 
   - node: janitor
     entity: BorgChassisJanitor

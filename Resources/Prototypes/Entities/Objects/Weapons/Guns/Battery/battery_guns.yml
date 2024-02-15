@@ -484,6 +484,17 @@
     price: 260
 
 - type: entity
+  name: disabler SMG
+  parent: WeaponDisablerSMG
+  id: WeaponBorgDisablerSMG
+  description: Advanced Borg weapon that exhausts organic targets, weakening them until they collapse.
+  suffix: BatterySelfRecharger
+  components:
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 24
+
+- type: entity
   name: practice disabler
   parent: WeaponDisabler
   id: WeaponDisablerPractice

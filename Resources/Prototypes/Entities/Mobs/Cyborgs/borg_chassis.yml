@@ -18,6 +18,7 @@
     moduleWhitelist:
       tags:
       - BorgModuleGeneric
+      - BorgModuleSecurity
     hasMindState: robot_e
     noMindState: robot_e_r
   - type: Construction
@@ -73,6 +74,50 @@
     - Science
   - type: AccessReader
     access: [["Cargo"], ["Salvage"], ["Command"], ["Research"]]
+  - type: Inventory
+    templateId: borgTall
+
+
+- type: entity
+  id: BorgChassisSecurity
+  parent: BaseBorgChassisNT
+  name: Security cyborg
+  components:
+  - type: Sprite
+    layers:
+    - state: peace
+    - state: peace_e_r
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: peace_l
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: BorgChassis
+    maxModules: 4
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+      - BorgModuleSecurity
+    hasMindState: peace_e
+    noMindState: peace_e_r
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Security
+    - Binary
+    - Common
+    - Science
+  - type: ActiveRadio
+    channels:
+    - Security
+    - Binary
+    - Common
+    - Science
+  - type: Construction
+    node: security
+  - type: AccessReader
+    access: [["Security"], ["Command"], ["Research"]]
   - type: Inventory
     templateId: borgTall
 

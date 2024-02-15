@@ -74,6 +74,15 @@
     - BorgModuleMedical
 
 - type: entity
+  id: BaseBorgModuleSecurity
+  parent: BaseBorgModule
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - BorgModuleSecurity
+
+- type: entity
   id: BaseBorgModuleService
   parent: BaseBorgModule
   abstract: true
@@ -176,6 +185,37 @@
     - Multitool
     - Welder
 
+
+# security modules
+- type: entity
+  id: BorgModuleCuff
+  parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
+  name: Cuff cyborg module (BUGGED)
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+    - state: icon-appraisal
+  - type: ItemBorgModule
+    items:
+    - Zipties
+
+- type: entity
+  id: BorgModuleSecurity
+  parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
+  name: Security cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+    - state: icon-appraisal
+  - type: ItemBorgModule
+    items:
+    - RechargeableStunbaton
+    - RechargeableFlash
+    - WeaponBorgDisablerSMG
+
+
 # cargo modules
 - type: entity
   id: BorgModuleAppraisal
@@ -238,7 +278,7 @@
     - WelderExperimental
     - NetworkConfigurator
     - RemoteSignaller
-    - GasAnalyzer   
+    - GasAnalyzer
     - GeigerCounter
 
 - type: entity
@@ -489,7 +529,7 @@
     - BikeHorn
     - ClownRecorder
     - BikeHornInstrument
-   
+
 #syndicate modules
 - type: entity
   id: BorgModuleSyndicateWeapon

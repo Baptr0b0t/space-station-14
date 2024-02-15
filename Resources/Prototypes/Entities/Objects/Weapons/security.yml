@@ -83,6 +83,18 @@
     guides:
     - Security
 
+
+- type: entity
+  id: RechargeableStunbaton
+  parent: Stunbaton
+  name: experimental Stunbaton
+  description: A bluespace-enhanced stun baton that regenerates charges passively.
+  suffix: BatterySelfRecharger
+  components:
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 12
+
 - type: entity
   name: truncheon
   parent: BaseItem
@@ -158,6 +170,23 @@
     - type: GuideHelp
       guides:
       - Security
+
+
+- type: entity
+  id: RechargeableFlash
+  parent: Flash
+  name: experimental Flash
+  description: A bluespace-enhanced Flash that regenerates charges passively.
+  suffix: AutoRecharge
+  components:
+  - type: AutoRecharge
+    rechargeDuration: 20
+  - type: GenericVisualizer
+    visuals:
+        enum.FlashVisuals.Flashing:
+          enum.FlashVisuals.LightLayer:
+            True: {visible: true}
+            False: {visible: false}
 
 - type: entity
   name: flash
