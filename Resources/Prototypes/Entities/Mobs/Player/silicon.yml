@@ -1,3 +1,144 @@
+# Actions
+# TODO
+
+# Ai
+- type: entity
+  id: AiHolder
+  abstract: true
+  description: Handles AI interactions across holocards + AI cores
+  components:
+  - type: StationAiHolder
+    slot:
+      name: station-ai-mind-slot
+      whitelist:
+        tags:
+        - StationAi
+  - type: ContainerContainer
+    containers:
+      station_ai_mind_slot: !type:ContainerSlot
+        # Load-bearing.
+        # The issue is verbs check for same transparent container.
+        # The alternative is you add a bunch of events trying to override it; we don't even really need the container functionality
+        # anyway it's just a quality of life thing.
+        showEnts: True
+
+- type: entity
+  id: Holocard
+  name: Holocard
+  parent:
+  - BaseItem
+  - AiHolder
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/ai_card.rsi
+    layers:
+    - state: base
+    - state: full
+      map: ["unshaded"]
+      shader: unshaded
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.StationAiVisualState.Key:
+        unshaded:
+          Empty: { state: empty }
+          Occupied: { state: full }
+
+
+  # Fix all of the interaction stuff etc. and make it actually work
+  # Also thanks moony for whatever gameticker spawning is doing.
+  # TODO: move camera stuff to shared and check it works + parallel
+  # TODO: Bump viewer range / PVS for AI specifically
+  # TODO: Get interactions working (need some kind of component for it idk)
+  # TODO: Need interaction validation
+  # TODO: Merge borg PR and get the vis working
+
+- type: entity
+  id: PlayerStationAiEmpty
+  name: AI Core
+  description: The latest in Artificial Intelligences.
+  parent:
+  - BaseStructure
+  - AiHolder
+  suffix: Empty
+  components:
+  - type: StationAiCore
+  - type: StationAiVision
+  - type: Sprite
+    sprite: Mobs/Silicon/station_ai.rsi
+    layers:
+    - state: base
+    - state: ai_empty
+      map: ["unshaded"]
+      shader: unshaded
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.StationAiVisualState.Key:
+        unshaded:
+          Empty: { state: ai_empty }
+          Occupied: { state: ai }
+
+- type: entity
+  id: PlayerStationAi
+  parent: PlayerStationAiEmpty
+  suffix: Job spawn
+  components:
+  - type: ContainerSpawnPoint
+    containerId: station_ai_mind_slot
+    job: StationAi
+  - type: Sprite
+    sprite: Mobs/Silicon/station_ai.rsi
+    layers:
+    - state: base
+    - state: ai
+      shader: unshaded
+
+- type: entity
+  id: StationAiBrain
+  parent: PositronicBrain
+  noSpawn: true
+  suffix: DO NOT MAP
+  components:
+  - type: Sprite
+    # Once it's in a core it's pretty much an abstract entity at that point.
+    visible: false
+  - type: ComplexInteraction
+  - type: Actions
+  - type: Eye
+    drawFov: false
+  - type: Examiner
+    checkInRangeUnoccluded: false
+  - type: InputMover
+  - type: Tag
+    tags:
+    - HideContextMenu
+    - StationAi
+  - type: RandomMetadata
+    # TODO: Loadout name support
+    # TODO: Copy it on station AI insertion
+    nameSegments: [ names_ai ]
+
+- type: entity
+  parent:
+  - Incorporeal
+  - BaseMob
+  id: StationAiHolo
+  name: Hologram
+  noSpawn: true
+  suffix: DO NOT MAP
+  components:
+  - type: Eye
+    pvsScale: 1.5
+  - type: Sprite
+    sprite: Mobs/Silicon/station_ai.rsi
+    visible: false
+    layers:
+    - state: holo
+      shader: unshaded
+
+# Borgs
 - type: entity
   id: PlayerBorgGeneric
   parent: BorgChassisGeneric
